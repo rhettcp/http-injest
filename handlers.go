@@ -36,8 +36,13 @@ func (h *Handler) Netog(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
+	log.Info("Request Received for Netog!")
 
-	log.Info(string(requestBody))
+	for k, vals := range r.Header {
+		log.Info("Header: ", k, ": ", strings.Join(vals, ", "))
+	}
+
+	log.Info("Body: ", string(requestBody))
 
 	w.WriteHeader(http.StatusOK)
 }
